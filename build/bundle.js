@@ -37,19 +37,11 @@ webpackJsonp([0],{
 
 
 	var FooterNav = React.createClass({displayName: "FooterNav",
-	    getInitialState:function(){
-	        return {
-	            some:"张家辉"
-	        }
-	    },
 	    componentDidMount: function () {
 	      $('li').click(function(){
 	          console.log($(this));
 	          $(this).addClass('current').siblings().removeClass('current')
 	      })
-	    },
-	    setCurrnet: function () {
-	        this.setState({some:"current"})
 	    },
 	    render: function () {
 	        return(
@@ -460,14 +452,15 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var style = __webpack_require__(243);
 
 	var HeaderComponent = React.createClass({displayName: "HeaderComponent",
 	   render: function(){
 	       return(
-	            React.createElement("header", {className: ""}, 
-	                React.createElement("p", null, "返回"), 
-	                React.createElement("p", null, "走秀网"), 
-	                React.createElement("p", null, "注册")
+	            React.createElement("header", {className: style.header}, 
+	                React.createElement("p", {className: style.p}, "返回"), 
+	                React.createElement("p", {className: style.mid}, "走秀网"), 
+	                React.createElement("p", {className: style.p}, "注册")
 	            )
 	       )
 	   }
@@ -515,6 +508,52 @@ webpackJsonp([0],{
 	    //动态的改变根元素字体大小：
 	    doc.style.fontSize = curDeviceWidth/2 * (100/320) + 'px';
 	})();
+
+/***/ },
+
+/***/ 243:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(244);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 244:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(236)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._1pg6YwYtVLVjRwrBGsQoaQ {\r\n    height: 0.85rem;\r\n    background-color: #e63569;\r\n    padding: 0 0.5rem;\r\n    display: flex;\r\n}\r\n\r\n._3Pk9lD8sqenQKDYmkK_iuk {\r\n    flex: 1;\r\n    text-align: center;\r\n    line-height: 0.85rem;\r\n    color: #fff;\r\n}\r\n\r\n._3UurtO1DAKxbtayb9vOT7s {\r\n    flex: 3;\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"header": "_1pg6YwYtVLVjRwrBGsQoaQ",
+		"p": "_3Pk9lD8sqenQKDYmkK_iuk",
+		"mid": "_3UurtO1DAKxbtayb9vOT7s _3Pk9lD8sqenQKDYmkK_iuk"
+	};
 
 /***/ }
 

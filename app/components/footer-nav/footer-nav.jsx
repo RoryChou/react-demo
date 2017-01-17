@@ -4,19 +4,11 @@ var $ = require('n-zepto');
 
 
 var FooterNav = React.createClass({
-    getInitialState:function(){
-        return {
-            some:"张家辉"
-        }
-    },
     componentDidMount: function () {
       $('li').click(function(){
           console.log($(this));
           $(this).addClass('current').siblings().removeClass('current')
       })
-    },
-    setCurrnet: function () {
-        this.setState({some:"current"})
     },
     render: function () {
         return(

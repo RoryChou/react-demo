@@ -1,0 +1,18 @@
+.header {
+    height: 0.85rem;
+    background-color: #e63569;
+    padding: 0 0.5rem;
+    display: flex;
+}
+
+.p {
+    flex: 1;
+    text-align: center;
+    line-height: 0.85rem;
+    color: #fff;
+}
+
+.mid {
+    composes: p;
+    flex: 3;
+}
