@@ -1,0 +1,26 @@
+.head {
+  height: 0.85rem;
+  background-color: #e63569;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.ul {
+  display: flex;
+  height: 100%;
+  background-color: #484850;
+}
+.li {
+  flex: 1;
+  height: 100%;
+  padding-top: 0.05rem;
+}
+
+.a {
+  display: block;
+  line-height: 0.85rem;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: #484850;
+}
