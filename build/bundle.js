@@ -14,9 +14,9 @@ webpackJsonp([0],{
 	var hashHistory = __webpack_require__(178).hashHistory;
 	var FooterNav = __webpack_require__(233);
 	var HomePage = __webpack_require__(239);
-	var FenleiPage = __webpack_require__(241);
+	var FenleiPage = __webpack_require__(246);
 
-	__webpack_require__(242);
+	__webpack_require__(247);
 
 	ReactDOM.render((React.createElement(Router, {history: hashHistory}, 
 	                    React.createElement(Route, {path: "/", component: FooterNav}, 
@@ -431,13 +431,16 @@ webpackJsonp([0],{
 
 	var React = __webpack_require__(1);
 	var HeaderComponent = __webpack_require__(240);
-
+	var BannerComponent = __webpack_require__(243);
+	var GoodsListComponent = __webpack_require__(249);
 
 	var HomePage = React.createClass({displayName: "HomePage",
+
 	    render: function () {
 	        return(
 	            React.createElement("div", null, 
 	                React.createElement(HeaderComponent, null), 
+	                React.createElement(BannerComponent, null), 
 	                React.createElement("div", null, "我是首页")
 	            )
 	        )
@@ -452,7 +455,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var style = __webpack_require__(243);
+	var style = __webpack_require__(241);
 
 	var HeaderComponent = React.createClass({displayName: "HeaderComponent",
 	   render: function(){
@@ -471,6 +474,172 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 241:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(242);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 242:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(236)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "._1pg6YwYtVLVjRwrBGsQoaQ {\r\n    height: 0.85rem;\r\n    background-color: #e63569;\r\n    padding: 0 0.5rem;\r\n    display: flex;\r\n}\r\n\r\n._3Pk9lD8sqenQKDYmkK_iuk {\r\n    flex: 1;\r\n    text-align: center;\r\n    line-height: 0.85rem;\r\n    color: #fff;\r\n}\r\n\r\n._3UurtO1DAKxbtayb9vOT7s {\r\n    flex: 3;\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"header": "_1pg6YwYtVLVjRwrBGsQoaQ",
+		"p": "_3Pk9lD8sqenQKDYmkK_iuk",
+		"mid": "_3UurtO1DAKxbtayb9vOT7s _3Pk9lD8sqenQKDYmkK_iuk"
+	};
+
+/***/ },
+
+/***/ 243:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var style = __webpack_require__(244);
+	var $ = __webpack_require__(238);
+	var Swiper = __webpack_require__(248);
+
+	var BannerComponent = React.createClass({displayName: "BannerComponent",
+	    getInitialState: function () {
+	      return {
+	          imgList: []
+	      }
+	    },
+	    componentWillMount: function () {
+	        //ajax 获取banner图片
+	        $.ajax({
+	            url: 'http://datainfo.duapp.com/shopdata/getBanner.php',
+	            dataType: 'jsonp',
+	            success: function (res) {
+	                /*if(!res){
+	                    $('.loading').html('已经到底啦')
+	                };*/
+	                for( var i in res){
+	                    var img = JSON.parse(res[i].goodsBenUrl)[0];
+	                    this.state.imgList.push(img);
+	                    this.setState({imgList: this.state.imgList});
+	                }
+	                console.log(this.state.imgList)
+	            }.bind(this)
+	        });
+	    },
+	    componentDidMount: function () {
+	        var mySwiper = new Swiper ('.swiper-container', {
+	            // 如果需要分页器
+	            pagination: '.swiper-pagination',
+	            autoplay : 3000,
+	            loop: true
+
+	        })
+	    },
+	    render: function(){
+	        return(
+	            React.createElement("div", {className: "banner swiper-container"}, 
+	                React.createElement("div", {className: "swiper-wrapper"}, 
+	                    React.createElement("div", {className: "swiper-slide"}, 
+	                        React.createElement("a", {href: "javascript:;"}, 
+	                            React.createElement("img", {src: this.state.imgList[0], alt: "", className: style.img})
+	                        )
+	                    ), 
+	                    React.createElement("div", {className: "swiper-slide"}, 
+	                        React.createElement("a", {href: "javascript:;"}, 
+	                            React.createElement("img", {src: this.state.imgList[1], alt: "", className: style.img})
+	                        )
+	                    ), 
+	                    React.createElement("div", {className: "swiper-slide"}, 
+	                        React.createElement("a", {href: "javascript:;"}, 
+	                            React.createElement("img", {src: this.state.imgList[2], alt: "", className: style.img})
+	                        )
+	                    ), 
+	                    React.createElement("div", {className: "swiper-slide"}, 
+	                        React.createElement("a", {href: "javascript:;"}, 
+	                            React.createElement("img", {src: this.state.imgList[3], alt: "", className: style.img})
+	                        )
+	                    )
+	                ), 
+	                React.createElement("div", {className: "swiper-pagination"})
+	            )
+	        )
+	    }
+	});
+
+	module.exports = BannerComponent;
+
+/***/ },
+
+/***/ 244:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(245);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 245:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(236)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".o-Dm_W8Ak_2XoM8bxnT5Y {\r\n    height: 2.5rem;\r\n    width: 100%;\r\n}", ""]);
+
+	// exports
+	exports.locals = {
+		"img": "o-Dm_W8Ak_2XoM8bxnT5Y"
+	};
+
+/***/ },
+
+/***/ 246:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -492,7 +661,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 242:
+/***/ 247:
 /***/ function(module, exports) {
 
 	/**
@@ -511,49 +680,58 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 243:
+/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	var React = __webpack_require__(1);
+	var $ = __webpack_require__(238);
 
-	// load the styles
-	var content = __webpack_require__(244);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(237)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	var GoodsListComponent = React.createClass({displayName: "GoodsListComponent",
+	    getInitialState: function () {
+	        return{
+	            gid: "",
+	            goodsListImg: '',
+	            goodsName: '',
+	            price: '',
+	            imgsUrl: ''
+	        }
+	    },
+	    componentWillMount: function () {
+	        $.ajax({
+	            url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
+	            data: {
+	                linenumber:9,
+	                pageCode: 0
+	            },
+	            dataType: 'jsonp',
+	            success: function (res) {
+	                console.log(res)
+	            }
+	        })
+	    },
+	   render: function () {
+	       return(
+	           React.createElement("li", null, 
+	                React.createElement("div", null, 
+	                    React.createElement("img", {src: "", alt: ""})
+	                ), 
+	                React.createElement("div", null, 
+	                    React.createElement("h3", null), 
+	                    React.createElement("div", null, 
+	                        React.createElement("span", null), 
+	                        React.createElement("span", null), 
+	                        React.createElement("p", null)
+	                    ), 
+	                    React.createElement("div", null, 
+	                        React.createElement("img", {src: "", alt: ""})
+	                    )
+	                )
+	           )
+	       )
+	   }
+	});
 
-/***/ },
-
-/***/ 244:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(236)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "._1pg6YwYtVLVjRwrBGsQoaQ {\r\n    height: 0.85rem;\r\n    background-color: #e63569;\r\n    padding: 0 0.5rem;\r\n    display: flex;\r\n}\r\n\r\n._3Pk9lD8sqenQKDYmkK_iuk {\r\n    flex: 1;\r\n    text-align: center;\r\n    line-height: 0.85rem;\r\n    color: #fff;\r\n}\r\n\r\n._3UurtO1DAKxbtayb9vOT7s {\r\n    flex: 3;\r\n}", ""]);
-
-	// exports
-	exports.locals = {
-		"header": "_1pg6YwYtVLVjRwrBGsQoaQ",
-		"p": "_3Pk9lD8sqenQKDYmkK_iuk",
-		"mid": "_3UurtO1DAKxbtayb9vOT7s _3Pk9lD8sqenQKDYmkK_iuk"
-	};
+	module.exports = GoodsListComponent;
 
 /***/ }
 

@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         bundle: './build/main.js',
-        vendor: ['react','react-dom','react-router','n-zepto']
+        vendor: ['react','react-dom','react-router','n-zepto','swiper']
     },
     output:{
         filename:'./build/bundle.js',
