@@ -441,7 +441,7 @@ webpackJsonp([0],{
 	            React.createElement("div", null, 
 	                React.createElement(HeaderComponent, null), 
 	                React.createElement(BannerComponent, null), 
-	                React.createElement("div", null, "我是首页")
+	                React.createElement(GoodsListComponent, null)
 	            )
 	        )
 	    }
@@ -685,15 +685,12 @@ webpackJsonp([0],{
 
 	var React = __webpack_require__(1);
 	var $ = __webpack_require__(238);
+	var style = __webpack_require__(250)
 
 	var GoodsListComponent = React.createClass({displayName: "GoodsListComponent",
 	    getInitialState: function () {
 	        return{
-	            gid: "",
-	            goodsListImg: '',
-	            goodsName: '',
-	            price: '',
-	            imgsUrl: ''
+	            list:[]
 	        }
 	    },
 	    componentWillMount: function () {
@@ -706,32 +703,87 @@ webpackJsonp([0],{
 	            dataType: 'jsonp',
 	            success: function (res) {
 	                console.log(res)
-	            }
+	                this.setState({list:res})
+	            }.bind(this)
 	        })
+	    },
+	    componentDidMount: function () {
+	      //添加iscroll
+
 	    },
 	   render: function () {
 	       return(
-	           React.createElement("li", null, 
-	                React.createElement("div", null, 
-	                    React.createElement("img", {src: "", alt: ""})
-	                ), 
-	                React.createElement("div", null, 
-	                    React.createElement("h3", null), 
-	                    React.createElement("div", null, 
-	                        React.createElement("span", null), 
-	                        React.createElement("span", null), 
-	                        React.createElement("p", null)
-	                    ), 
-	                    React.createElement("div", null, 
-	                        React.createElement("img", {src: "", alt: ""})
-	                    )
-	                )
+	           React.createElement("ul", null, 
+	               
+	                   this.state.list.map(function (obj,i) {
+	                       return(
+	                           React.createElement("li", {key: i}, 
+	                               React.createElement("div", null, 
+	                                   React.createElement("img", {src: obj.goodsListImg, alt: ""})
+	                               ), 
+	                               React.createElement("div", null, 
+	                                   React.createElement("h3", null, obj.goodsName), 
+	                                   React.createElement("div", null, 
+	                                       React.createElement("span", null, "¥", obj.price), 
+	                                       React.createElement("span", null, "¥", (obj.price)*(obj.discount)/10), 
+	                                       React.createElement("p", null, obj.discount, "折")
+	                                   ), 
+	                                   React.createElement("div", null, 
+	                                       React.createElement("img", {src: "app/img/add-cart.png", alt: ""})
+	                                   )
+	                               )
+	                           )
+	                       )
+	                   })
+	               
 	           )
 	       )
 	   }
 	});
 
 	module.exports = GoodsListComponent;
+
+/***/ },
+
+/***/ 250:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(251);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(237)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 251:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(236)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
+
 
 /***/ }
 

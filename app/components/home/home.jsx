@@ -10,7 +10,7 @@ var HomePage = React.createClass({
             <div>
                 <HeaderComponent/>
                 <BannerComponent/>
-                <div>我是首页</div>
+                <GoodsListComponent/>
             </div>
         )
     }
