@@ -28,13 +28,15 @@ var BannerComponent = React.createClass({
         });
     },
     componentDidMount: function () {
-        var mySwiper = new Swiper ('.swiper-container', {
-            // 如果需要分页器
-            pagination: '.swiper-pagination',
-            autoplay : 3000,
-            loop: true
+        window.onload = function(){
+            var mySwiper = new Swiper ('.swiper-container', {
+                // 如果需要分页器
+                pagination: '.swiper-pagination',
+                autoplay : 3000,
+                loop: true
 
-        })
+            })
+        }
     },
     render: function(){
         return(

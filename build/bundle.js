@@ -14,9 +14,9 @@ webpackJsonp([0],{
 	var hashHistory = __webpack_require__(178).hashHistory;
 	var FooterNav = __webpack_require__(233);
 	var HomePage = __webpack_require__(239);
-	var FenleiPage = __webpack_require__(246);
+	var FenleiPage = __webpack_require__(250);
 
-	__webpack_require__(247);
+	__webpack_require__(251);
 
 	ReactDOM.render((React.createElement(Router, {history: hashHistory}, 
 	                    React.createElement(Route, {path: "/", component: FooterNav}, 
@@ -84,8 +84,8 @@ webpackJsonp([0],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+			module.hot.accept("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -432,7 +432,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(1);
 	var HeaderComponent = __webpack_require__(240);
 	var BannerComponent = __webpack_require__(243);
-	var GoodsListComponent = __webpack_require__(249);
+	var GoodsListComponent = __webpack_require__(247);
 
 	var HomePage = React.createClass({displayName: "HomePage",
 
@@ -488,8 +488,8 @@ webpackJsonp([0],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+			module.hot.accept("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -525,7 +525,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(1);
 	var style = __webpack_require__(244);
 	var $ = __webpack_require__(238);
-	var Swiper = __webpack_require__(248);
+	var Swiper = __webpack_require__(246);
 
 	var BannerComponent = React.createClass({displayName: "BannerComponent",
 	    getInitialState: function () {
@@ -552,13 +552,15 @@ webpackJsonp([0],{
 	        });
 	    },
 	    componentDidMount: function () {
-	        var mySwiper = new Swiper ('.swiper-container', {
-	            // 如果需要分页器
-	            pagination: '.swiper-pagination',
-	            autoplay : 3000,
-	            loop: true
+	        window.onload = function(){
+	            var mySwiper = new Swiper ('.swiper-container', {
+	                // 如果需要分页器
+	                pagination: '.swiper-pagination',
+	                autoplay : 3000,
+	                loop: true
 
-	        })
+	            })
+	        }
 	    },
 	    render: function(){
 	        return(
@@ -610,8 +612,8 @@ webpackJsonp([0],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+			module.hot.accept("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -639,53 +641,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 246:
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var HeaderComponent = __webpack_require__(240);
-
-
-	var FenleiPage = React.createClass({displayName: "FenleiPage",
-	    render: function () {
-	        return(
-	            React.createElement("div", null, 
-	                React.createElement(HeaderComponent, null), 
-	                React.createElement("div", null, "我是分类")
-	            )
-	        )
-	    }
-	});
-
-	module.exports = FenleiPage;
-
-/***/ },
-
 /***/ 247:
-/***/ function(module, exports) {
-
-	/**
-	 * Created by rory on 2016/12/28.
-	 * 11:32
-	 */
-
-	/* root element font-size calculate*/
-	module.exports = (function () {
-	    //iphone 4 :width=320px; 1rem = 100px; dpr = 2;
-	    var doc = document.documentElement; //获取根元素的dom节点;
-	    var curDeviceWidth = doc.clientWidth || window.innerWidth; //拿到当前设备的宽度
-	    //动态的改变根元素字体大小：
-	    doc.style.fontSize = curDeviceWidth/2 * (100/320) + 'px';
-	})();
-
-/***/ },
-
-/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var $ = __webpack_require__(238);
-	var style = __webpack_require__(250)
+	var style = __webpack_require__(248)
 
 	var GoodsListComponent = React.createClass({displayName: "GoodsListComponent",
 	    getInitialState: function () {
@@ -745,13 +706,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 250:
+/***/ 248:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(251);
+	var content = __webpack_require__(249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(237)(content, {});
@@ -760,8 +721,8 @@ webpackJsonp([0],{
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules!./index.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules!./index.css");
+			module.hot.accept("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css", function() {
+				var newContent = require("!!./../../../node_modules/.0.26.1@css-loader/index.js?modules!./index.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -772,7 +733,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 251:
+/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(236)();
@@ -784,6 +745,47 @@ webpackJsonp([0],{
 
 	// exports
 
+
+/***/ },
+
+/***/ 250:
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var HeaderComponent = __webpack_require__(240);
+
+
+	var FenleiPage = React.createClass({displayName: "FenleiPage",
+	    render: function () {
+	        return(
+	            React.createElement("div", null, 
+	                React.createElement(HeaderComponent, null), 
+	                React.createElement("div", null, "我是分类")
+	            )
+	        )
+	    }
+	});
+
+	module.exports = FenleiPage;
+
+/***/ },
+
+/***/ 251:
+/***/ function(module, exports) {
+
+	/**
+	 * Created by rory on 2016/12/28.
+	 * 11:32
+	 */
+
+	/* root element font-size calculate*/
+	module.exports = (function () {
+	    //iphone 4 :width=320px; 1rem = 100px; dpr = 2;
+	    var doc = document.documentElement; //获取根元素的dom节点;
+	    var curDeviceWidth = doc.clientWidth || window.innerWidth; //拿到当前设备的宽度
+	    //动态的改变根元素字体大小：
+	    doc.style.fontSize = curDeviceWidth/2 * (100/320) + 'px';
+	})();
 
 /***/ }
 
