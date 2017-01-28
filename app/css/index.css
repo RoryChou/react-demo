@@ -1,7 +1,17 @@
 body {
   font-size: 16px; }
 
+img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
 li.current {
   background-color: #e63569; }
+
+.searchIcon {
+	background: url(../img/searchIcon.png) no-repeat left center;
+}
 
 /*# sourceMappingURL=index.css.map */

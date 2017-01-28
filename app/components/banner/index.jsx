@@ -38,6 +38,15 @@ var BannerComponent = React.createClass({
             })
         }
     },
+    componentDidUpdate: function(){
+        var mySwiper = new Swiper ('.swiper-container', {
+                // 如果需要分页器
+                pagination: '.swiper-pagination',
+                autoplay : 3000,
+                loop: true
+
+            })
+    },
     render: function(){
         return(
             <div className="banner swiper-container">

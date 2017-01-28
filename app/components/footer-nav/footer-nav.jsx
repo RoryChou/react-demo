@@ -14,7 +14,7 @@ var FooterNav = React.createClass({
         return(
             <div>
                 {this.props.children}
-                <footer className={style.head}>
+                <footer className={style.head} id='footer-nav'>
                     <ul className={style.ul}>
                         <li className={style.li} >
                             <a href="#/home" className={style.a}>首页</a>

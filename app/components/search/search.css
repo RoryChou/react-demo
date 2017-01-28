@@ -1,0 +1,19 @@
+.div {
+	background-color: #52525a;
+    height: 0.86rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input {
+	
+    background-color: #fff;
+    background-size: 0.34rem 0.38rem;
+    background-position-x: 0.27rem;
+    padding-left: 0.74rem;
+    display: block;
+    height: 0.56rem;
+    border-radius: 0.28rem;
+    border: 0;
+    width: 5.16rem;
+}
