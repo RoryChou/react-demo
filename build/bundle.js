@@ -21,10 +21,12 @@ webpackJsonp([0],{
 	ReactDOM.render((React.createElement(Router, {history: hashHistory}, 
 	                    React.createElement(Route, {path: "/", component: FooterNav}, 
 	                        React.createElement(IndexRoute, {component: HomePage}), 
-	                        React.createElement(Route, {path: "/home", component: HomePage}), 
+	                        React.createElement(Route, {path: "/", component: HomePage}), 
 	                        React.createElement(Route, {path: "/fenlei", component: FenleiPage})
 	                    )
 	                )),document.querySelector('#content'));
+
+
 
 /***/ },
 
@@ -38,8 +40,9 @@ webpackJsonp([0],{
 
 	var FooterNav = React.createClass({displayName: "FooterNav",
 	    componentDidMount: function () {
+	        //默认点击首页效果
+	        $('li').eq(0).addClass('current');
 	      $('li').click(function(){
-	          console.log($(this));
 	          $(this).addClass('current').siblings().removeClass('current')
 	      })
 	    },
@@ -50,7 +53,7 @@ webpackJsonp([0],{
 	                React.createElement("footer", {className: style.head, id: "footer-nav"}, 
 	                    React.createElement("ul", {className: style.ul}, 
 	                        React.createElement("li", {className: style.li}, 
-	                            React.createElement("a", {href: "#/home", className: style.a}, "首页")
+	                            React.createElement("a", {href: "#/", className: style.a}, "首页")
 	                        ), 
 	                        React.createElement("li", {className: style.li}, 
 	                            React.createElement("a", {href: "#/fenlei", className: style.a}, "分类")
@@ -455,9 +458,47 @@ webpackJsonp([0],{
 	        }
 	    },
 	    componentDidMount: function(){
-	        $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
+	       $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
+	        $(function(){
+	            var dis = false;
+	            var myIscroll = new iScroll('container',{
+	                topOffset: 60,
+	                onScrollMove: function(){
+	                    dis = false;
+	                    if(myIscroll.y >= 20){
+	                        dis = true;
+	                    }
+	                },
+	                onScrollEnd: function () {
+	                    //判断是否到顶部
+	                    if( myIscroll.y === -60){
+	                        //flag = false;
+	                        //show loading bar
+
+	                        //刷新页面
+	                        //window.location.reload(true);
+	                        if(dis){
+	                            window.location.reload(true);
+	                        }
+	                    }
+	                    //判断是否触底
+	                    if(myIscroll.scrollerH+myIscroll.y <= myIscroll.wrapperH){
+	                        //flag = false;
+	                        $('#loadBar').show();
+
+	                        
+	                        myIscroll.refresh();
+	                        myIscroll.scrollToElement('.loading');
+	                        //调用goodslist组件的ajax
+	                        this.setState({pageCode:1})
+	                    }
+	                }.bind(this)
+	            })  
+	        }.bind(this))
+	        
 	        //add iscroll
-	        window.onload = function(){
+	       /* window.onload = function(){
+	            console.log('window.onload')
 	            var myIscroll = new iScroll('container',{
 	                onScrollMove: function (e) {
 	                    if(myIscroll.y>0){
@@ -485,8 +526,9 @@ webpackJsonp([0],{
 	                        this.setState({pageCode:1})
 	                    }
 	                }.bind(this)
-	            })
-	        }.bind(this)
+	            })  
+	        }.bind(this)*/
+
 	    },
 	    render: function () {
 	        return(
@@ -948,7 +990,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "._3ZGY4VpGCguC74y8V-AYdR {\r\n\tposition: relative;\r\n}\r\n.AjCRZIWC6sYEg0edL8TqQ {\r\n\tdisplay: none;\r\n\theight: 1.2rem;\r\n  line-height: 1.2rem;\r\n  text-align: center;\r\n}\r\n._1W4GWCbkv5qGHXHamx36pP {\r\n\tdisplay: none;\r\n  height: 0.8rem;\r\n  opacity: 0.5;\r\n  background-color: $color-main;\r\n  line-height: 0.8rem;\r\n  color: #fff;\r\n  text-align: center;\r\n}", ""]);
+	exports.push([module.id, "._3ZGY4VpGCguC74y8V-AYdR {\r\n\tposition: relative;\r\n}\r\n.AjCRZIWC6sYEg0edL8TqQ {\r\n\t\r\n\theight: 1.2rem;\r\n  line-height: 1.2rem;\r\n  text-align: center;\r\n}\r\n._1W4GWCbkv5qGHXHamx36pP {\r\n\tdisplay: none;\r\n  height: 0.8rem;\r\n  opacity: 0.5;\r\n  background-color: $color-main;\r\n  line-height: 0.8rem;\r\n  color: #fff;\r\n  text-align: center;\r\n}", ""]);
 
 	// exports
 	exports.locals = {

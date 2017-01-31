@@ -16,7 +16,8 @@ require('./rem.js');
 ReactDOM.render((<Router history={hashHistory}>
                     <Route path='/' component={FooterNav}>
                         <IndexRoute component={HomePage}/>
-                        <Route path='/home' component={HomePage} />
+                        <Route path='/' component={HomePage} />
                         <Route path='/fenlei' component={FenleiPage} />
                     </Route>
                 </Router>),document.querySelector('#content'));
+

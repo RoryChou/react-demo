@@ -5,8 +5,9 @@ var $ = require('n-zepto');
 
 var FooterNav = React.createClass({
     componentDidMount: function () {
+        //默认点击首页效果
+        $('li').eq(0).addClass('current');
       $('li').click(function(){
-          console.log($(this));
           $(this).addClass('current').siblings().removeClass('current')
       })
     },
@@ -17,7 +18,7 @@ var FooterNav = React.createClass({
                 <footer className={style.head} id='footer-nav'>
                     <ul className={style.ul}>
                         <li className={style.li} >
-                            <a href="#/home" className={style.a}>首页</a>
+                            <a href="#/" className={style.a}>首页</a>
                         </li>
                         <li className={style.li}>
                             <a href="#/fenlei" className={style.a}>分类</a>

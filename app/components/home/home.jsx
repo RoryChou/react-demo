@@ -24,9 +24,47 @@ var HomePage = React.createClass({
         }
     },
     componentDidMount: function(){
-        $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
+       $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
+        $(function(){
+            var dis = false;
+            var myIscroll = new iScroll('container',{
+                topOffset: 60,
+                onScrollMove: function(){
+                    dis = false;
+                    if(myIscroll.y >= 20){
+                        dis = true;
+                    }
+                },
+                onScrollEnd: function () {
+                    //判断是否到顶部
+                    if( myIscroll.y === -60){
+                        //flag = false;
+                        //show loading bar
+
+                        //刷新页面
+                        //window.location.reload(true);
+                        if(dis){
+                            window.location.reload(true);
+                        }
+                    }
+                    //判断是否触底
+                    if(myIscroll.scrollerH+myIscroll.y <= myIscroll.wrapperH){
+                        //flag = false;
+                        $('#loadBar').show();
+
+                        
+                        myIscroll.refresh();
+                        myIscroll.scrollToElement('.loading');
+                        //调用goodslist组件的ajax
+                        this.setState({pageCode:1})
+                    }
+                }.bind(this)
+            })  
+        }.bind(this))
+        
         //add iscroll
-        window.onload = function(){
+       /* window.onload = function(){
+            console.log('window.onload')
             var myIscroll = new iScroll('container',{
                 onScrollMove: function (e) {
                     if(myIscroll.y>0){
@@ -54,8 +92,9 @@ var HomePage = React.createClass({
                         this.setState({pageCode:1})
                     }
                 }.bind(this)
-            })
-        }.bind(this)
+            })  
+        }.bind(this)*/
+
     },
     render: function () {
         return(
