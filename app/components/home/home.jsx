@@ -20,22 +20,27 @@ var HomePage = React.createClass({
     },
     getInitialState: function(){
         return {
-            pageCode:0
+            linenumber:3
         }
     },
+    myIscroll: null,
     componentDidMount: function(){
        $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
         $(function(){
             var dis = false;
-            var myIscroll = new iScroll('container',{
+            var flag = false;
+            this.myIscroll = new iScroll('container',{
                 topOffset: 60,
                 onScrollMove: function(){
                     dis = false;
+                    flag = true;
                     if(myIscroll.y >= 20){
                         dis = true;
                     }
+                    
                 },
                 onScrollEnd: function () {
+                    myIscroll.refresh();
                     //判断是否到顶部
                     if( myIscroll.y === -60){
                         //flag = false;
@@ -47,16 +52,17 @@ var HomePage = React.createClass({
                             window.location.reload(true);
                         }
                     }
+                    
                     //判断是否触底
-                    if(myIscroll.scrollerH+myIscroll.y <= myIscroll.wrapperH){
+                    if(myIscroll.scrollerH+myIscroll.y+20 <= myIscroll.wrapperH && flag){
                         //flag = false;
-                        $('#loadBar').show();
-
-                        
+                        console.log('touch end')
+                        $('.loadBar').show();
                         myIscroll.refresh();
                         myIscroll.scrollToElement('.loading');
                         //调用goodslist组件的ajax
-                        this.setState({pageCode:1})
+                        var linenumber = this.state.linenumber + 3
+                        this.setState({linenumber:linenumber})
                     }
                 }.bind(this)
             })  
@@ -106,7 +112,7 @@ var HomePage = React.createClass({
                     <div>
                         <div className={style.reload+ ' reload'}>松手刷新</div>
                         <BannerComponent/>
-                        <GoodsListComponent pageCode={this.state.pageCode}/>
+                        <GoodsListComponent linenumber={this.state.linenumber} iscrollRfresh={this.}/>
                         <div className={style.loadBar+ ' loadBar'}>正在加载</div>
                     </div>
                     

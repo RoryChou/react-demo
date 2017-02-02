@@ -5,7 +5,7 @@ var style = require('./index.css')
 var GoodsListComponent = React.createClass({
     getInitialProps:function(){
       return {
-        pageCode:0
+        linenumber:3
       }
     },
     getInitialState: function () {
@@ -13,13 +13,13 @@ var GoodsListComponent = React.createClass({
           list:[],
         }
     },
-    componentWillMount: function () {
-      console.log('mount',this.props.pageCode)
-        $.ajax({
+    componentWillReceiveProps: function(obj){
+      console.log(obj)
+      $.ajax({
             url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
             data: {
-                linenumber:9,
-                pageCode: this.props.pageCode
+                linenumber:obj.linenumber,
+                pageCode: 0 
             },
             dataType: 'jsonp',
             success: function (res) {
@@ -28,21 +28,23 @@ var GoodsListComponent = React.createClass({
             }.bind(this)
         })
     },
-    componentWillUpdate: function(){
-      console.log('update',this.props.pageCode)
-      //为什么会不停的执行？
-      /*$.ajax({
+    componentWillMount: function () {
+      console.log('mount',this.props.linenumber)
+        $.ajax({
             url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
             data: {
-                linenumber:9,
-                pageCode: this.props.pageCode
+                linenumber:this.props.linenumber,
+                pageCode: 0
             },
             dataType: 'jsonp',
             success: function (res) {
                 console.log(res)
                 this.setState({list:res})
             }.bind(this)
-        })*/
+        })
+    },
+    componentDidUpdate: function(){
+
     },
    render: function () {
        return(
