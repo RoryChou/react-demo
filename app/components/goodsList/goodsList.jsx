@@ -44,11 +44,12 @@ var GoodsListComponent = React.createClass({
         })
     },
     componentDidUpdate: function(){
-
+      console.log('componentDidUpdate')
+      this.props.iscrollRfresh = true;
     },
    render: function () {
        return(
-           <ul>
+           <ul onLoad={this.props.iscrollRfresh}>
                {
                    this.state.list.map(function (obj,i) {
                        return(

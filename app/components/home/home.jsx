@@ -23,10 +23,15 @@ var HomePage = React.createClass({
             linenumber:3
         }
     },
+    iscrollRfresh: function(){
+        console.log('ok')
+        this.myIscroll.refresh();
+    },
     myIscroll: null,
     componentDidMount: function(){
        $('#container').height(this.iscrollHeightCalc($('#header'),$('#search'),$('#footer-nav')))
         $(function(){
+            console.log('home componentDidMount')
             var dis = false;
             var flag = false;
             this.myIscroll = new iScroll('container',{
@@ -34,15 +39,15 @@ var HomePage = React.createClass({
                 onScrollMove: function(){
                     dis = false;
                     flag = true;
-                    if(myIscroll.y >= 20){
+                    if(this.myIscroll.y >= 20){
                         dis = true;
                     }
                     
-                },
+                }.bind(this),
                 onScrollEnd: function () {
-                    myIscroll.refresh();
+                    this.myIscroll.refresh();
                     //判断是否到顶部
-                    if( myIscroll.y === -60){
+                    if( this.myIscroll.y === -60){
                         //flag = false;
                         //show loading bar
 
@@ -54,12 +59,12 @@ var HomePage = React.createClass({
                     }
                     
                     //判断是否触底
-                    if(myIscroll.scrollerH+myIscroll.y+20 <= myIscroll.wrapperH && flag){
+                    if(this.myIscroll.scrollerH+this.myIscroll.y+20 <= this.myIscroll.wrapperH && flag){
                         //flag = false;
                         console.log('touch end')
                         $('.loadBar').show();
-                        myIscroll.refresh();
-                        myIscroll.scrollToElement('.loading');
+                        this.myIscroll.refresh();
+                        this.myIscroll.scrollToElement('.loading');
                         //调用goodslist组件的ajax
                         var linenumber = this.state.linenumber + 3
                         this.setState({linenumber:linenumber})
@@ -112,7 +117,7 @@ var HomePage = React.createClass({
                     <div>
                         <div className={style.reload+ ' reload'}>松手刷新</div>
                         <BannerComponent/>
-                        <GoodsListComponent linenumber={this.state.linenumber} iscrollRfresh={this.}/>
+                        <GoodsListComponent linenumber={this.state.linenumber} iscrollRfresh={this.iscrollRfresh}/>
                         <div className={style.loadBar+ ' loadBar'}>正在加载</div>
                     </div>
                     
